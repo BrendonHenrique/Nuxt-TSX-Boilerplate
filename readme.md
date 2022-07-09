@@ -9,7 +9,7 @@ includes also examples of : Vuex Store, Layout, Middleware, Plugin, Mixins, Serv
 install all dependencies with yarn and run yarn serve
 
 Must read this content and docs to work with this boilerplate:  
-https://class-component.vuejs.org/
+https://class-component.vuejs.org/ <hr/>
 https://www.npmjs.com/package/vuex-class
 https://github.com/nuxt-community/nuxt-property-decorator
 https://vuejs.org/guide/extras/render-function.html
