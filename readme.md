@@ -10,14 +10,14 @@ install all dependencies with yarn and run yarn serve
 
 Must read this content and docs to work with this boilerplate:  
 https://class-component.vuejs.org/ <br/>
-https://www.npmjs.com/package/vuex-class
-https://github.com/nuxt-community/nuxt-property-decorator
-https://vuejs.org/guide/extras/render-function.html
-https://www.cypress.io/
-https://github.com/axios/axios
-https://jestjs.io/
-https://testing-library.com/docs/vue-testing-library/intro/
-https://github.com/styled-components/vue-styled-components
+https://www.npmjs.com/package/vuex-class <br/>
+https://github.com/nuxt-community/nuxt-property-decorator <br/>
+https://vuejs.org/guide/extras/render-function.html <br/>
+https://www.cypress.io/ <br/>
+https://github.com/axios/axios <br/>
+https://jestjs.io/ <br/>
+https://testing-library.com/docs/vue-testing-library/intro/ <br/>
+https://github.com/styled-components/vue-styled-components <br/>
 
 ## Creating Components
 
