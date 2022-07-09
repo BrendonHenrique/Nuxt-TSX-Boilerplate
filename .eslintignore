@@ -1,0 +1,15 @@
+.nuxt/
+.vscode/
+dist/
+./node_modules/
+typings/
+static/
+csharp/
+APIMock/
+test/
+services/
+puglins/
+store/
+uitls/
+assets/
+components/saude

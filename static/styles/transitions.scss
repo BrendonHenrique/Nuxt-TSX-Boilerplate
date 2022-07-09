@@ -1,0 +1,39 @@
+// <transition name="tray">
+.tray-enter,
+.tray-leave-to { opacity: 0 }
+
+.tray-leave,
+.tray-enter-to { opacity: 1 }
+
+.tray-enter-active,
+.tray-leave-active { transition: opacity 300ms }
+
+
+@keyframes pulse {
+	0% {
+		transform: scale(1);
+	}
+
+	70% {
+		transform: scale(1.1);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+.pulse {
+	transform: scale(1);
+	transition: transform 4s;
+	animation: pulse 4s infinite ease-in-out;
+}
+
+.fade-list-enter,
+.fade-list-leave-to { opacity: 0 }
+
+.fade-list-leave,
+.fade-list-enter-to { opacity: 1 }
+
+.fade-list-enter-active,
+.fade-list-leave-active { transition: opacity 1s }

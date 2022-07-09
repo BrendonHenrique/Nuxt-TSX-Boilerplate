@@ -1,0 +1,49 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+      "@nuxtjs",
+      "@nuxtjs/eslint-config-typescript",
+      "prettier"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 13,
+        "parser": "@typescript-eslint/parser",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "vue",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "import/order": "off",
+        "semi": "off",
+        "require-await": "warn",
+        "vue/no-unused-components": "warn",
+        "eqeqeq": "warn",
+        "@typescript-eslint/no-unused-vars": "warn",
+        "no-irregular-whitespace": "warn",
+        "no-constant-condition": "warn",
+        "no-unused-expressions": "warn",
+        "camelcase": "warn",
+        "no-empty-pattern": "warn",
+        "no-labels": "warn",
+        "multiline-ternary": "warn",
+        "vue/require-prop-type-constructor": "warn",
+        "vue/multi-word-component-names": "warn",
+        "array-callback-return": "warn",
+        "no-empty": "warn",
+        "no-case-declarations": "warn",
+        "vue/valid-template-root": "warn",
+        "no-use-before-define": "warn",
+        "no-return-assign": "warn",
+        "quotes": ["error", "double", { "avoidEscape": true }],
+        "space-before-function-paren": ["error", {
+            "anonymous": "always",
+            "named": "never",
+            "asyncArrow": "always"
+        }]
+    }
+}
