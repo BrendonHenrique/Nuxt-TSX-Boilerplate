@@ -5,22 +5,5 @@
 </head>
 <body {{ BODY_ATTRS }}>
   {{ APP }}
-<script>
-  {
-    setTimeout(() => {
-      let handler = null
-      function gtmFix() {
-        document.getElementsByTagName("body")[0].childNodes.forEach((n) => {
-          if (n.textContent === '"' && handler !== null) {
-            clearInterval(handler)
-            n.textContent = ''
-          }
-        })
-      }
-
-      handler = setInterval(gtmFix, 1000)
-          }, 300);
-  }
-</script>
 </body>
 </html>
