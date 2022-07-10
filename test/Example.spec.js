@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils"
-import Button from "@/components/KippButton/index.tsx"
+import NuxtTSXComponent from "@/components/NuxtTSXComponent/index.tsx"
 
-describe("<Button />", () => {
+describe("<NuxtTSXComponent />", () => {
   test("is a Vue instance", () => {
     const wrapper = mount(Button)
     expect(wrapper.vm).toBeTruthy()
