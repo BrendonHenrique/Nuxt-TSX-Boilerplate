@@ -21,7 +21,7 @@ https://github.com/styled-components/vue-styled-components <br/>
 
 ## Creating Components
 
-There're some ways to access create Vuejs TSX Component using a lightweight theme support relaied by ChakraUI API, let's cover some of them.
+There're some ways to access create Vuejs TSX Component using a lightweight theme support relaied by ChakraUI API, lets cover some of them.
 
 ### Using with Typescript With this library
 
@@ -164,7 +164,7 @@ export default class NuxtTSXComponent extends VueComponent {
 }
 
 
-let's creating the componente just used above, keep in mind to focus in architecure, create a nice standart for your components, 
+let create the componente just used above, keep in mind to focus in architecure, create a nice standart for your components, 
 I do like to create <Component>/index.tsx ( including rendering and logic ) and <Component>/style.ts ( using to hold all styled components which will be using to build the interface). 
 
 // NuxtTSXCustomComponent/index.tsx
