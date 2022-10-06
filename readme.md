@@ -37,7 +37,7 @@ in creating and developing using pre-created interfaces ( it will allow you to e
 
 ### Creating a VueJS component as .TSX file 
 
-It's quite simple to create, we're gonna follow some steps bellow, just keep in mind to import the correct libraries though, and extend the correct interface.
+It is quite simple to create, we're gonna follow some steps bellow, just keep in mind to import the correct libraries though, and extend the correct interface.
 
 ```javascript 
     //@/components/MyComponent/index.tsx
