@@ -21,18 +21,111 @@ https://github.com/styled-components/vue-styled-components <br/>
 
 ## Creating Components
 
-There're some ways to access theme variables in NuxtTSX Components, let's cover some of them.
+There're some ways to access create Vuejs TSX Component using a lightweight theme support relaied by ChakraUI API, lets cover some of them.
 
-### Using with Typescript
+### Using with Typescript With this library
 
-There're two main interfaces declared in global scope ( can be used in any ts file )
+There're two main interfaces declared in global scope ( so it can - and must - be used in any ts file ), helping you out 
+in creating and developing using pre-created interfaces ( it will allow you to expanding theme variables and values and getting access to them easily ).
 
-- INuxtTSXTheme - include all properties types such as breakpoints, colors, space, sizes and z-indices.
-- StyledNuxtTSXTheme - include a handy declaration to create styled components.
 
-### Using directly in a chakra component
+- INuxtTSXTheme - include all keys with their types such as breakpoints, colors, space, sizes and z-indices.
+- StyledNuxtTSXTheme - include a handy declaration to create styled components. ( Will be covered next ) 
 
-You can directly access any variables defined in NuxtTSX theme passing those values on chakra components as props.
+** all those can be found in /types/theme.d.ts
+
+
+### Creating a VueJS component as .TSX file 
+
+It is quite simple to create, we're gonna follow some steps bellow, just keep in mind to import the correct libraries though, and extend the correct interface.
+
+```javascript 
+    //@/components/MyComponent/index.tsx
+    
+    import { VueComponent } from "@/config/vue-component"
+    import { Component } from "nuxt-property-decorator"
+    
+    @Component({})
+    export class MyComponent extends VueComponent {
+
+      render() {
+        return <h1> Hello World ! <hi/>
+      }
+    }
+```
+
+
+
+### Using Decorators
+
+You might need to use some useful decorators imported from (nuxt-property-decorator library)[https://github.com/nuxt-community/nuxt-property-decorator] 
+such as Watch, Props, Inject, Provide, InjectReactive, ProvideReactive, to increase your productivity.   
+
+## Passing Props
+
+```javascript 
+    //@/components/MyComponent/index.tsx
+    
+    import { VueComponent } from "@/config/vue-component"
+    import { Component, Prop } from "nuxt-property-decorator"
+    
+    
+    @Component({})
+    export class MyComponent extends VueComponent {
+    @Prop({
+         type: String, 
+         required: true, 
+         default: 'Brendon',
+         validator(value) { 
+            return !!value
+        } 
+    }) readonly name: string
+
+      render() {
+        return <h1> Hello {{ name }}, nice to have you aboard ! <hi/>
+      }
+    }
+```
+
+
+
+## Watching values
+
+```javascript 
+    //@/components/MyComponent/index.tsx
+    
+    import { VueComponent } from "@/config/vue-component"
+    import { Component, Watch } from "nuxt-property-decorator"
+    
+    
+    @Component({})
+    export class MyComponent extends VueComponent {
+    @Prop({
+         type: String, 
+         required: true, 
+         default: 'Brendon',
+         validator(value) { 
+            return !!value
+        } 
+    }) readonly name: string
+    
+   @Watch('name')
+   onNameChange(newValue, oldValue) {
+    console.log(`before it was ${oldValue}, then ${newValue} `) 
+   } 
+
+      render() {
+        return <h1> Hello {{ name }}, nice to have you aboard ! <hi/>
+      }
+    }
+```
+
+... check out the library to get over more examples ...
+
+
+### Using theme values in the components
+
+You can directly access any variables defined in NuxtTSX theme passing those keys on chakra components as props.
 
 ```javascript
 render() {
@@ -49,13 +142,15 @@ render() {
 }
 ```
 
-### Using in a custom component
+### Using the theme in a custom component
 
-You can access :root document variables in order to access any variables defined in theme, and pass them as props of string type.
-Or access _$theme_ variable to get any value needed, but for this you must extend VueComponent (/config/vue-component).
+You can access :root document variables in order to access any variables defined in theme, and pass them as props of string type, without need to extend VueComponent.
+
+Or you can access this.$theme variable to get any value needed, by extending VueComponent (@/config/vue-component), then access $theme property on 'this' context.
 
 ```javascript
-// Parent component or Page file
+
+// Declaring the TSX Component in a parent component ( or a page if this file can be founded in /pages folder )
 @Component({})
 export default class NuxtTSXComponent extends VueComponent {
   render() {
@@ -68,7 +163,11 @@ export default class NuxtTSXComponent extends VueComponent {
   }
 }
 
-// NuxtTSXCustomComponent/form.tsx
+
+let create the componente just used above, keep in mind to focus in architecure, create a nice standart for your components, 
+I do like to create <Component>/index.tsx ( including rendering and logic ) and <Component>/style.ts ( using to hold all styled components which will be using to build the interface). 
+
+// NuxtTSXCustomComponent/index.tsx
 type NuxtTSXCustomComponentProps = {
   background: string;
   color: string;
@@ -84,7 +183,7 @@ export default class NuxtTSXCustomComponent extends VueComponent<NuxtTSXCustomCo
         background={this.background}
         color={this.color}
       >
-        Hi NuxtTSXer !
+        Hey there! !
       </NuxtTSXCustomComponentContainer>
     );
   }
@@ -100,17 +199,26 @@ export const NuxtTSXCustomComponentContainer = styled('div', {
 `
 ```
 
-### Using in a styled component
 
-You can access theme context and get any needed value.
+### Accessing the theme in a styled component
 
-**Note**: important to keep on mind that: on this time these theme variables is defined by vue-styled-component differently than at others examples above, which were defined by chakra extended theme ( see nuxt.config.js and config/theme/provider files ).
+You can access theme context ( extending StyledNuxtTSXTheme ) and get any needed value, by destructuring the variable which extends StyledNuxtTSXTheme.
+
+just like this : 
+
+const { theme } = StyledNuxtTSXTheme
+
+console.log(theme.sizes.full)
+
+// output 
+// '100%'
 
 ```javascript
 import styled from 'vue-styled-components';
 
 // Component that access only theme variables
 export const NuxtTSXStyledCustomComponent = styled.div`
+
   ${({ theme }: StyledNuxtTSXTheme) => `
     background: ${theme.colors.primary};
     height: ${theme.sizes['2xl']};
@@ -124,7 +232,12 @@ export const NuxtTSXStyledCustomComponent = styled.div`
   `}
 `;
 
-// Component that access theme variables and receive others props
+**Note**
+important to keep on mind: this time these theme variables is defined by vue-styled-component extending configuration see 
+@/nuxt.config.js and @/config/theme/provider files. 
+
+
+// Components can also access theme variables and receive others props at same time
 export const NuxtTSXStyledCustomComponent = styled('div', {
   isActive: Boolean,
 })`
@@ -142,11 +255,9 @@ export const NuxtTSXStyledCustomComponent = styled('div', {
 `;
 ```
 
-### Using in scss file
+### Acessing theme values in a scss file
 
 You can access directly using cssProperty: var(--chakra-property-propertyValue) since all elements will inherit it from :root.
-
-**Disclaimer**: I do really discourage you to use scss file since, we're using styled components as standard throughout the NuxtTSX project.
 
 ```css
 .NuxtTSX-component {
